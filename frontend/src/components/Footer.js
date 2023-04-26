@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
+
+// Import pour le loader
+import { HalfMalf } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css';
+
+// Import pour les icones du footer
 import {BottomNavigation, BottomNavigationAction } from '@mui/material';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
+import TuneIcon from '@mui/icons-material/Tune';
 
 // Import des composants correspondants aux différentes pages
 import CoursActions from '../views/CoursActions';
@@ -63,7 +72,7 @@ function Footer () {
     return (
         <div>
             {
-                isLoading ? ( <p>Chargement...</p> ) :
+                isLoading ? ( <HalfMalf text={"Loading..."} width={"100px"} height={"100px"} /> ) :
                 (
                     <main>
                         {
@@ -98,9 +107,9 @@ function Footer () {
                             }
                         }}
                     >
-                        <BottomNavigationAction label="Cours Actions" />
-                        <BottomNavigationAction label="Mes Actions" />
-                        <BottomNavigationAction label="Paramètres" />
+                        <BottomNavigationAction label="Cours Actions" icon={<QueryStatsIcon />} />
+                        <BottomNavigationAction label="Mes Actions" icon={<DataSaverOffIcon />} />
+                        <BottomNavigationAction label="Paramètres" icon={<TuneIcon />} />
                     </BottomNavigation>
                 </nav>
             </footer>

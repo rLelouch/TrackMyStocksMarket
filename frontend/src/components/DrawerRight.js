@@ -74,16 +74,16 @@ function DrawerRight () {
                 </ListItemIcon>
                 <ListItemText primary="Mon profil" />
             </ListItemButton>
-                <FormControlLabel
-                    control={ 
-                        <MaterialUISwitch 
-                            sx={{ m: 1 }}
-                            defaultChecked={false}
-                            onChange={handleSwitchChange}
-                        />
-                    }
-                    label={switchLabel}
-                />
+            <FormControlLabel
+                control={ 
+                    <MaterialUISwitch 
+                        sx={{ m: 1 }}
+                        defaultChecked={false}
+                        onChange={handleSwitchChange}
+                    />
+                }
+                label={switchLabel}
+            />
         </List>
     );
 }
