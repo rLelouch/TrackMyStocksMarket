@@ -1,0 +1,44 @@
+header {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 1em;
+    text-align: center;
+    border-bottom: 0.125em solid #2a4252;
+}
+
+.header {
+    text-align: center;
+    padding: 1em;
+}
+
+.runningBox {
+    height: 100%;
+}
+
+main {
+    height: calc(100% - 5em);
+}
+
+section {
+    padding: 3em 1.5em;
+    height: 100%;
+}
+
+article {
+    margin-top: 12em;
+    text-align: center;
+    width: 100%;
+}
+
+article p {
+    margin-bottom: 5em;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+}

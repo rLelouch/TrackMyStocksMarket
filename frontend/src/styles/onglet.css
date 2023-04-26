@@ -1,0 +1,19 @@
+.navigationOnglets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.0325em solid #2a4252;
+    border-radius: 0.5em;
+}
+
+.onglet {
+    padding: 0.5em 1.5em ;
+    text-align: center;
+
+    border-right: 0.0325em solid #2a4252;
+    border-radius: 0.5em 0 0 0.5em;
+}
+
+.onglet:last-child {
+    border-right: none;
+}
