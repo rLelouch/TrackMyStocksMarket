@@ -1,0 +1,6 @@
+- page entrance a traduire
+- traduire les boutons
+- traduire le message de validation
+- traduire les items du footer
+- page paramètres -> titre + les onglets + le texte des switchs | sous-titre + label + boutons
+- page mes actions -> titre + texte nombre d'actions + cours des actions | labels + boutons + validateTips
