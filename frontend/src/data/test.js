@@ -1,45 +1,68 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+class ActionData {
 
-function createData(name, code) {
-  return { name, code};
+  getAirLiquideData = async () => {
+      const apiKey = '7M7EZXSZX1H4ED46';
+      const symbol = 'AI.PAR';
+      const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`;
+  
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      const airLiquideData = [];
+  
+      for (let date in data['Time Series (Daily)'])
+      {
+          if (data['Time Series (Daily)'].hasOwnProperty(date))
+          {
+              const closePrice = parseFloat(data['Time Series (Daily)'][date]['4. close']);
+              airLiquideData.push([date, closePrice]);
+          }
+      }
+
+      return airLiquideData;
+  };
+
+  getOrangeData = async () => {
+      const apiKey = '7M7EZXSZX1H4ED46';
+      const symbol = 'ORA.PAR';
+      const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`;
+  
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+  
+      const orangeData = [];
+  
+      for (let date in data['Time Series (Daily)'])
+      {
+          if (data['Time Series (Daily)'].hasOwnProperty(date)) {
+              const closePrice = parseFloat(data['Time Series (Daily)'][date]['4. close']);
+              orangeData.push([date, closePrice]);
+          }
+      }
+
+      return orangeData;
+  };
+
+  getETHData = async () => {
+      const apiKey = '7M7EZXSZX1H4ED46';
+      const symbol = 'MC.PAR';
+      const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`;
+  
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      const ethData = [];
+
+      for (let date in data['Time Series (Daily)'])
+      {
+          if (data['Time Series (Daily)'].hasOwnProperty(date)) {
+              const closePrice = parseFloat(data['Time Series (Daily)'][date]['4. close']);
+              ethData.push([date, closePrice]);
+          }
+      }
+
+      return ethData;
+  };
 }
 
-const rows = [
-  createData('India', 'IN'),
-  createData('China', 'CN'),
-  createData('Italy', 'IT'),
-  createData('United States', 'US'),
-  createData('Canada', 'CA'),
-  createData('Australia', 'AU'),
-  createData('Germany', 'DE'),
-  createData('Ireland', 'IE'),
-  createData('Mexico', 'MX'),
-  createData('Japan', 'JP',)
-];
-
-export default function StickyHeadTable() {
-  return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-                <TableCell align="center">Cours Action</TableCell>
-                <TableCell align="center">Date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
-  );
-}
+export default ActionData;

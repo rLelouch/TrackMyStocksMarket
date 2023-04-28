@@ -1,39 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
+import {Box, Tabs, Tab}  from '@mui/material';
 
-import Onglets from '../components/Onglets';
+// import des differentes vue pour les tab
+const CoursActionAirliquide = lazy(() => import('./CoursActionAirLiquide'));
+const CoursActionOrange = lazy(() => import('./CoursActionOrange'));
+const CoursActionETH = lazy(() => import('./CoursActionETH'));
 
-// impport du tableau
-import TableAction from '../components/TableAction';
+function TabPanel(props) {
+  const { value, index, component: Component, ...other } = props;
 
-// import des fonctions pour recuperer les donnees a inserer dans le tableau
-import ActionData from '../data/ActionData';
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Component />
+            </Suspense>
+        </Box>
+      )}
+    </div>
+  );
+}
 
-function CoursActions () {
-  
-  const [airLiquideData, setAirLiquideData] = useState([]);
+function CoursActions() {
 
-  useEffect(() => {
-    const actionData = new ActionData();
-    actionData.getAirLiquideData().then(data => {
-      setAirLiquideData(data);
-    });
-  }, []);
+  const [value, setValue] = useState(0);
 
-  let widthTab = 100/3;
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <section>
       <h1>Cours Actions</h1>
-      <article>
-        <Onglets pageName="coursActions" width={widthTab}/>
-        <div>
-          <div>
-            <TableAction actionTab={airLiquideData} />
-          </div>
-        </div>
-      </article>
+      <Tabs value={value} onChange={handleChange}>
+        <Tab label="Air Liquide" />
+        <Tab label="Orange" />
+        <Tab label="ETH" />
+      </Tabs>
+      <TabPanel value={value} index={0} component={CoursActionAirliquide} />
+      <TabPanel value={value} index={1} component={CoursActionOrange} />
+      <TabPanel value={value} index={2} component={CoursActionETH} />
     </section>
   );
-};
+}
 
 export default CoursActions;
